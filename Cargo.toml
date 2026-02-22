@@ -1,0 +1,54 @@
+[package]
+name = "udlna"
+edition = "2021"
+publish = false
+rust-version = "1.93"
+description = "Minimal DLNA/UPnP media server"
+
+[lib]
+name = "udlna"
+path = "src/lib.rs"
+
+[[bin]]
+name = "udlna"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+toml = "1"
+thiserror = "2"
+dirs = "6"
+mime_guess = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+walkdir = "2"
+symphonia = { version = "0.5", features = ["mp3", "aac", "isomp4", "mkv", "flac", "ogg", "wav"] }
+mp4 = "0.14"
+imagesize = "0.14"
+uuid = { version = "1", features = ["v4", "v5"] }
+machine-uid = "0.5"
+axum = { version = "0.8", features = ["tokio", "http1", "macros"] }
+axum-extra = { version = "0.12", features = ["file-stream"] }
+quick-xml = { version = "0.39", features = ["serialize"] }
+chrono = { version = "0.4", default-features = false, features = ["std"] }
+tower-http = { version = "0.6", features = ["trace"] }
+http-range-header = "0.4"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "fs", "net", "io-util", "signal", "time", "sync"] }
+getifaddrs = "0.6"
+tokio-util = { version = "0.7", features = ["io"] }
+socket2 = { version = "0.5", features = ["all"] }
+hostname = "0.4.2"
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"
+
+[lints.rust]
+future-incompatible = "warn"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+redundant_clone = "warn"
+needless_collect = "warn"
+large_enum_variant = "warn"
